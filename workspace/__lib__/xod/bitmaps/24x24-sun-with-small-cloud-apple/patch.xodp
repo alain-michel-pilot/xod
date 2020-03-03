@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {
+      "id": "BJt9uJ2E8",
+      "position": {
+        "units": "slots",
+        "x": -1,
+        "y": 0
+      },
+      "type": "xod/patch-nodes/not-implemented-in-xod"
+    },
+    {
+      "id": "H1eYqOJ24U",
+      "label": "BMP",
+      "position": {
+        "units": "slots",
+        "x": -1,
+        "y": 1
+      },
+      "type": "xod/graphics/output-bmp"
+    }
+  ]
+}

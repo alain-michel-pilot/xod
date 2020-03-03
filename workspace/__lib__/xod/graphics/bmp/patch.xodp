@@ -1,0 +1,32 @@
+{
+  "nodes": [
+    {
+      "id": "S1_NndpQL",
+      "label": "BMP",
+      "position": {
+        "units": "slots",
+        "x": 0,
+        "y": 1
+      },
+      "type": "xod/patch-nodes/output-self"
+    },
+    {
+      "id": "SyBIh_T78",
+      "position": {
+        "units": "slots",
+        "x": 2,
+        "y": 0
+      },
+      "type": "xod/patch-nodes/utility"
+    },
+    {
+      "id": "Syk4h_TQ8",
+      "position": {
+        "units": "slots",
+        "x": 0,
+        "y": 0
+      },
+      "type": "xod/patch-nodes/not-implemented-in-xod"
+    }
+  ]
+}
