@@ -1604,14 +1604,17 @@ xod__gpio__digital_write::Node node_9 = {
 
 #if defined(XOD_DEBUG) || defined(XOD_SIMULATION)
 namespace detail {
-void handleTweaks() {
-    if (XOD_DEBUG_SERIAL.available() > 0 && XOD_DEBUG_SERIAL.find("+XOD:", 5)) {
+void handleDebugProtocolMessags() {
+
+    if (
+      XOD_DEBUG_SERIAL.available() > 0 &&
+      XOD_DEBUG_SERIAL.find("+XOD:", 5)
+    ) {
         int tweakedNodeId = XOD_DEBUG_SERIAL.parseInt();
 
         switch (tweakedNodeId) {
         }
-
-        XOD_DEBUG_SERIAL.find('\n');
+          XOD_DEBUG_SERIAL.find('\n');
     }
 }
 } // namespace detail
@@ -1627,7 +1630,7 @@ void runTransaction() {
     XOD_TRACE_LN(g_transactionTime);
 
 #if defined(XOD_DEBUG) || defined(XOD_SIMULATION)
-    detail::handleTweaks();
+    detail::handleDebugProtocolMessags();
 #endif
 
     // Check for timeouts

@@ -321,6 +321,19 @@ registerHandlebarsFilterLoopHelper(
   R.complement(R.propEq('type', XP.PIN_TYPE.PULSE))
 );
 
+const findLinkedTetheringInetNode = R.find(
+  R.both(
+    R.pipe(R.path(['patch', 'patchPath']), XP.isTetheringInetPatchPath),
+    R.pathSatisfies(isOutputLinked, ['outputs', 0])
+  )
+);
+Handlebars.registerHelper('forLinkedTetheringInetNode', (nodes, block) =>
+  R.compose(
+    R.ifElse(R.isNil, block.inverse, block.fn),
+    findLinkedTetheringInetNode
+  )(nodes)
+);
+
 // =============================================================================
 //
 // Templates and settings
