@@ -37,4 +37,8 @@ export default {
   interactiveErroredNodePins: {},
   pinsAffectedByErrorRaisers: {},
   globals: {},
+  tetheringInet: {
+    nodeId: null,
+    sender: null,
+  },
 };

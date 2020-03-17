@@ -36,7 +36,8 @@ export const startDebuggerSession = (
   nodePinKeysMap,
   pinsAffectedByErrorRaisers,
   currentPatchPath,
-  globals
+  globals,
+  tetheringInetNodeId
 ) => ({
   type: AT.DEBUG_SESSION_STARTED,
   payload: {
@@ -46,6 +47,7 @@ export const startDebuggerSession = (
     pinsAffectedByErrorRaisers,
     patchPath: currentPatchPath,
     globals,
+    tetheringInetNodeId,
   },
 });
 
@@ -78,4 +80,12 @@ export const markDebugSessionOutdated = () => ({
 export const sendToSerial = line => ({
   type: AT.LINE_SENT_TO_SERIAL,
   payload: line,
+});
+
+export const tetheringInetCreated = (nodeId, sender) => ({
+  type: AT.TETHERING_INET_CREATED,
+  payload: {
+    nodeId,
+    sender,
+  },
 });

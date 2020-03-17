@@ -76,6 +76,9 @@ export const createErrorMessage = err => ({
   message: err.message,
   stack: err.stack,
 });
+
+export const isXodNetMessage = R.propEq('prefix', '+XOD_INET');
+
 //------------------------------------------------------------------------------
 //
 // Message parser

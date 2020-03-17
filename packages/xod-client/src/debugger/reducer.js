@@ -20,6 +20,7 @@ import {
   MARK_DEBUG_SESSION_OUTDATED,
   SELECT_DEBUGGER_TAB,
   LINE_SENT_TO_SERIAL,
+  TETHERING_INET_CREATED,
 } from './actionTypes';
 
 import * as EAT from '../editor/actionTypes';
@@ -501,10 +502,16 @@ export default (state = initialState, action) => {
         R.assoc('watchNodeValues', {}),
         R.assoc('nodeIdsMap', {}),
         R.assoc('globals', {}),
-        R.assoc('activeSession', SESSION_TYPE.NONE)
+        R.assoc('activeSession', SESSION_TYPE.NONE),
+        R.assoc('tetheringInet', { nodeId: null, sender: null })
       )(state);
     case MARK_DEBUG_SESSION_OUTDATED:
       return R.assoc('isOutdated', true, state);
+    case TETHERING_INET_CREATED:
+      return R.compose(
+        R.assocPath(['tetheringInet', 'nodeId'], action.payload.nodeId),
+        R.assocPath(['tetheringInet', 'sender'], action.payload.sender)
+      )(state);
 
     case EAT.TABTEST_RUN_REQUESTED:
       return R.compose(
@@ -588,6 +595,7 @@ export default (state = initialState, action) => {
         R.assoc('pinsAffectedByErrorRaisers', {}),
         R.assoc('globals', {}),
         R.assoc('isPreparingSimulation', false),
+        R.assoc('tetheringInet', { nodeId: null, sender: null }),
         hideProgressBar
       )(state);
     case EAT.SIMULATION_ERROR:
@@ -598,6 +606,7 @@ export default (state = initialState, action) => {
         R.assoc('activeSession', SESSION_TYPE.NONE),
         R.assoc('isPreparingSimulation', false),
         R.assoc('globals', {}),
+        R.assoc('tetheringInet', { nodeId: null, sender: null }),
         hideProgressBar,
         showDebuggerPane
       )(state);

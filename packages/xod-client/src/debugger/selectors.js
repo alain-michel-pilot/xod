@@ -253,3 +253,13 @@ export const getInteractiveErroredNodePinsForCurrentChunk = createMemoizedSelect
 );
 
 export const getStoredGlobals = R.compose(R.prop('globals'), getDebuggerState);
+
+export const tetheringInetNodeId = R.compose(
+  R.path(['tetheringInet', 'nodeId']),
+  getDebuggerState
+);
+
+export const tetheringInetSender = R.compose(
+  R.path(['tetheringInet', 'sender']),
+  getDebuggerState
+);

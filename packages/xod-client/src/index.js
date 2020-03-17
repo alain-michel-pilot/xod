@@ -21,9 +21,13 @@ import {
   CHECK_ARDUINO_DEPENDENCIES,
   SERIAL_SESSION_STARTED,
   LINE_SENT_TO_SERIAL,
+  DEBUGGER_LOG_ADD_MESSAGES,
+  DEBUG_SESSION_STARTED,
+  TETHERING_INET_CREATED,
 } from './debugger/actionTypes';
 
 import { LOG_TAB_TYPE } from './debugger/constants';
+import { getTetheringInetNodeId } from './debugger/utils';
 
 import { MESSAGE_BUTTON_CLICKED } from './messages/actionTypes';
 import {
@@ -31,6 +35,7 @@ import {
   INSTALL_LIBRARIES_COMPLETE,
   TWEAK_PULSE_SENT,
   NODE_PROPERTY_UPDATING,
+  SIMULATION_LAUNCHED,
 } from './editor/actionTypes';
 import { SAVE_ALL, NODE_PROPERTY_UPDATED } from './project/actionTypes';
 
@@ -69,6 +74,7 @@ import {
   createXodMessage,
   createErrorMessage,
   parseDebuggerMessage,
+  isXodNetMessage,
 } from './debugger/debugProtocol';
 
 import initialState from './core/state';
@@ -84,25 +90,28 @@ export * from './debugger/actions';
 export {
   INSTALL_ARDUINO_DEPENDENCIES,
   CHECK_ARDUINO_DEPENDENCIES,
+  SERIAL_SESSION_STARTED,
+  LINE_SENT_TO_SERIAL,
+  DEBUGGER_LOG_ADD_MESSAGES,
+  DEBUG_SESSION_STARTED,
+  TETHERING_INET_CREATED,
 } from './debugger/actionTypes';
 
 export { LOG_TAB_TYPE } from './debugger/constants';
+export { getTetheringInetNodeId } from './debugger/utils';
 
 export { MESSAGE_BUTTON_CLICKED } from './messages/actionTypes';
 export {
   TAB_CLOSE,
   INSTALL_LIBRARIES_COMPLETE,
   NODE_PROPERTY_UPDATING,
+  SIMULATION_LAUNCHED,
 } from './editor/actionTypes';
 export {
   SAVE_ALL,
   NODE_PROPERTY_UPDATED,
   TWEAK_PULSE_SENT,
 } from './project/actionTypes';
-export {
-  SERIAL_SESSION_STARTED,
-  LINE_SENT_TO_SERIAL,
-} from './debugger/actionTypes';
 
 export * from './editor/selectors';
 export { getUpload } from './processes/selectors';
@@ -148,6 +157,7 @@ export {
   createXodMessage,
   createErrorMessage,
   parseDebuggerMessage,
+  isXodNetMessage,
 } from './debugger/debugProtocol';
 
 export {
@@ -185,7 +195,9 @@ export default Object.assign(
     createXodMessage,
     createErrorMessage,
     parseDebuggerMessage,
+    isXodNetMessage,
     deriveProjectName,
+    getTetheringInetNodeId,
     TAB_CLOSE,
     SAVE_ALL,
     NODE_PROPERTY_UPDATED,
@@ -199,6 +211,10 @@ export default Object.assign(
     SERIAL_SESSION_STARTED,
     LINE_SENT_TO_SERIAL,
     LOG_TAB_TYPE,
+    SIMULATION_LAUNCHED,
+    DEBUGGER_LOG_ADD_MESSAGES,
+    DEBUG_SESSION_STARTED,
+    TETHERING_INET_CREATED,
   },
   UserSelectors,
   EditorSelectors,
