@@ -33,7 +33,7 @@ class App extends client.App {
     this.onResize = this.onResize.bind(this);
     this.onUpload = this.onUpload.bind(this);
     this.onShowCodeArduino = this.onShowCodeArduino.bind(this);
-    this.onRunSimulation = this.onRunSimulation.bind(this);
+    this._onRunSimulation = this._onRunSimulation.bind(this);
     this.onOpenTutorial = this.onOpenTutorial.bind(this);
     this.onLoadChange = this.onLoadChange.bind(this);
     this.onLoad = this.onLoad.bind(this);
@@ -59,6 +59,10 @@ class App extends client.App {
     document.addEventListener('click', this.onDocumentClick);
 
     props.actions.openProject(props.tutorialProject);
+  }
+
+  _onRunSimulation() {
+    this.onRunSimulation(true);
   }
 
   onDocumentClick(e) {
@@ -275,7 +279,7 @@ class App extends client.App {
       submenu(items.deploy, [
         onClick(items.showCodeForArduino, this.onShowCodeArduino),
         onClick(items.uploadToArduino, this.onUpload),
-        onClick(items.runSimulation, this.onRunSimulation),
+        onClick(items.runSimulation, this._onRunSimulation),
       ]),
       submenu(items.view, [
         onClick(items.toggleProjectBrowser, () =>
@@ -356,7 +360,7 @@ class App extends client.App {
           stopDebuggerSession={this.onStopDebuggerSessionClicked}
           onUploadClick={this.onUpload}
           onUploadAndDebugClick={this.onUpload}
-          onRunSimulationClick={this.onRunSimulation}
+          onRunSimulationClick={this._onRunSimulation}
         />
         <PopupInstallApp
           isVisible={this.state.popupInstallApp}

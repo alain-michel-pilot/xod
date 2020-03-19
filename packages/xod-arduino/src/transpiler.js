@@ -15,7 +15,7 @@ import {
 import * as XP from 'xod-project';
 import { def } from './types';
 
-import { renderProject } from './templates';
+import { findLinkedTetheringInetNode, renderProject } from './templates';
 import { LIVENESS } from './constants';
 
 import {
@@ -70,6 +70,11 @@ const toposortProject = def(
       XP.getTopologyMap,
       XP.getPatchByPathUnsafe
     )(path, project)
+);
+
+export const hasTetheringInternetNode = def(
+  'hasTetheringInternetNode :: TProject -> Boolean',
+  R.compose(R.not, R.isNil, findLinkedTetheringInetNode, R.prop('nodes'))
 );
 
 //-----------------------------------------------------------------------------

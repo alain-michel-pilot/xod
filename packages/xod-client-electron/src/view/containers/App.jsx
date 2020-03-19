@@ -113,7 +113,7 @@ class App extends client.App {
     this.onConnectSerial = this.onConnectSerial.bind(this);
     this.onSerialPortChange = this.onSerialPortChange.bind(this);
     this.onShowCodeArduino = this.onShowCodeArduino.bind(this);
-    this.onRunSimulation = this.onRunSimulation.bind(this);
+    this._onRunSimulation = this._onRunSimulation.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onSaveAs = this.onSaveAs.bind(this);
     this.onSaveCopyAs = this.onSaveCopyAs.bind(this);
@@ -256,6 +256,10 @@ class App extends client.App {
       R.any(R.equals(false), R.values(propEquality)) ||
       !R.equals(this.state, nextState)
     );
+  }
+
+  _onRunSimulation() {
+    this.onRunSimulation(false);
   }
 
   onResize() {
@@ -683,7 +687,7 @@ class App extends client.App {
       submenu(items.deploy, [
         onClick(items.showCodeForArduino, this.onShowCodeArduino),
         onClick(items.uploadToArduino, this.onUploadToArduinoClicked),
-        onClick(items.runSimulation, this.onRunSimulation),
+        onClick(items.runSimulation, this._onRunSimulation),
         onClick(
           items.connectSerial,
           this.props.actions.openConnectSerialDialog
@@ -973,7 +977,7 @@ class App extends client.App {
           stopDebuggerSession={this.onStopDebuggerSessionClicked}
           onUploadClick={this.onUploadToArduinoClicked}
           onUploadAndDebugClick={this.onUploadToArduinoAndDebugClicked}
-          onRunSimulationClick={this.onRunSimulation}
+          onRunSimulationClick={this._onRunSimulation}
         />
         {this.renderPopupShowCode()}
         {this.renderPopupUploadConfig()}

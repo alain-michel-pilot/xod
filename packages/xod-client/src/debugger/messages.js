@@ -40,3 +40,9 @@ export const SIMULATION_BUILDING = 'Building…';
 export const SIMULATION_RUNNING = 'Running simulation…';
 export const SIMULATION_LAUNCHED = 'Simulation is launched';
 export const SIMULATION_ABORTED = 'The simulation was interrupted by the user';
+
+export const DO_NOT_USER_TETHERING_INTERNET_IN_BROWSER = {
+  title: 'Tethering Internet is not available in browser',
+  note:
+    'Install the desktop version of the XOD IDE to reveal all features of XOD',
+};
